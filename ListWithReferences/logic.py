@@ -1,6 +1,12 @@
 import webbrowser
+import fileLogic
 d = {}
 dictionary = {}
+def config(dictionary):
+    str = fileLogic.rozdenienegpa2()
+    if (str != "file is empty"):
+        dictionary = str
+    return dictionary
 def deystviassulkoi(l):
     def pechatatspisok(l):
          if len(l)==0:
@@ -26,6 +32,7 @@ def deystviassulkoi(l):
 
     m=True
     while m:
+
           print('----------------------------------------')
           print("1) Dobavte cilku")
           print("2) Yдалить ссылку")
@@ -44,9 +51,11 @@ def deystviassulkoi(l):
                 otkritsilku(l)
           elif vubop == 5:
                 m=False
+
 def imiapolzovatelia(dictionary):
     n=True
     while n:
+        dictionary = config(dictionary)
         print('----------------------------------------')
         print("1) voity v acaunt")
         print("2) sozdat acaunt")
@@ -57,6 +66,7 @@ def imiapolzovatelia(dictionary):
             immia=input('viedite imia ')
             parol=input('viedite parol ')
             dictionary[immia] = parol
+            fileLogic.rozdenienegpa(dictionary)
             d[immia] = []
             print('acaunt sozdan ')
             print('voidite v acaunt ')
