@@ -1,13 +1,13 @@
 import webbrowser
 import fileLogic
-d = {}
+l = []
 dictionary = {}
 def config(dictionary):
-    str = fileLogic.rozdenienegpa2()
+    str = fileLogic.rozdenienegpa2("storage.txt")
     if (str != "file is empty"):
         dictionary = str
     return dictionary
-def deystviassulkoi(l):
+def deystviassulkoi(l, immia):
     def pechatatspisok(l):
          if len(l)==0:
               print("net cilok")
@@ -50,6 +50,7 @@ def deystviassulkoi(l):
           elif vubop==4:
                 otkritsilku(l)
           elif vubop == 5:
+                fileLogic.rozdenienegpa(l, f'{immia}.txt')
                 m=False
 
 def imiapolzovatelia(dictionary):
@@ -66,8 +67,8 @@ def imiapolzovatelia(dictionary):
             immia=input('viedite imia ')
             parol=input('viedite parol ')
             dictionary[immia] = parol
-            fileLogic.rozdenienegpa(dictionary)
-            d[immia] = []
+            fileLogic.rozdenienegpa(dictionary,"storage.txt")
+            fileLogic.rozdenienegpa([], f'{immia}.txt')
             print('acaunt sozdan ')
             print('voidite v acaunt ')
             continue
@@ -76,8 +77,8 @@ def imiapolzovatelia(dictionary):
             parol1=input("vvedite parol ")
             if name in dictionary.keys() and parol1 == dictionary[name]:
                 print('vash acaunt naiden')
-
-                deystviassulkoi(d[name])
+                l = fileLogic.rozdenienegpa2(f'{name}.txt')
+                deystviassulkoi(l,name)
             else:
                 print("proverte imia and poprobuite essho raz")
                 continue
